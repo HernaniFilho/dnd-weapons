@@ -1,7 +1,16 @@
+using dnd_weapons.DAO;
+using dnd_weapons.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("Database");
+builder.Services.AddEntityFrameworkSqlServer().AddDbContext<DatabaseContext>(o => o.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IWeaponDAO, WeaponDAO>();
 
 var app = builder.Build();
 

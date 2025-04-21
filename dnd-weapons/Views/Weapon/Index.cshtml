@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<WeaponModel>
+@{
     ViewData["Title"] = "Arsenal";
 }
 
@@ -6,7 +7,7 @@
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
         <a asp-action="AddWeapon" role="button" class="btn btn-primary">Adicionar nova arma</a>
     </div>
-	<br />
+    <br />
     <h1 class="display-4">@ViewData["Title"] do seu personagem</h1>
     <br />
     <table class="table">
@@ -21,39 +22,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>mdo</td>
-                <td>Descrição 1</td>
-                <td>
-                    <a asp-action="EditWeapon" role="button" class="btn btn-primary">Editar</a>
-                    <a asp-action="DeleteWeapon" role="button" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>fat</td>
-                <td>Descrição 1</td>
-                <td>
-                    <a asp-action="EditWeapon" role="button" class="btn btn-primary">Editar</a>
-                    <a asp-action="DeleteWeapon" role="button" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>John</td>
-                <td>Doe</td>
-                <td>social</td>
-                <td>Descrição 1</td>
-                <td>
-                    <a asp-action="EditWeapon" role="button" class="btn btn-primary">Editar</a>
-                    <a asp-action="DeleteWeapon" role="button" class="btn btn-danger">Excluir</a>
-                </td>
-            </tr>
+            @if(Model != null && Model.Any())
+            {
+                foreach(var weapon in Model)
+                {
+                    <tr>
+                        <th scope="row">@weapon.Id</th>
+                        <td>@weapon.Name</td>
+                        <td>@weapon.Type</td>
+                        <td>@weapon.Price</td>
+                        <td>@weapon.Description</td>
+                        <td>
+                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="EditWeapon" role="button" class="btn btn-primary">Editar</a>
+                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="DeleteWeapon" role="button" class="btn btn-danger">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            }
         </tbody>
     </table>
 </div>
