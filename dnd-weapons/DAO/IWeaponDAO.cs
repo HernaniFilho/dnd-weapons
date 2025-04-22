@@ -6,7 +6,8 @@ namespace dnd_weapons.DAO
     {
         WeaponModel CreateWeapon(WeaponModel weapon);
         List<WeaponModel> ReadWeaponAll();
+        WeaponModel ReadWeaponById(int id);
         WeaponModel UpdateWeapon(WeaponModel weapon);
-        WeaponModel DeleteWeapon(int id);
+        bool DeleteWeaponById(int id);
     }
 }

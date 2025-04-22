@@ -11,25 +11,35 @@
     <div class="form-group">
         <label for="Nome" class="form-label">Nome</label>
         <input type="text" asp-for="Name" class="form-control form-control-lg" id="Nome" placeholder="Faca de Arremesso" aria-label="Nome">
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <label for="Tipo" class="form-label">Tipo da Arma</label>
-        <select asp-for="Type" class="form-select" id="Tipo" aria-label="Tipo"> <!-- Opções de armas disponíveis -->
-            <option selected>Tipos</option>
-            <option value="Type1">Type1</option>
-            <option value="Type2">Type2</option>
-            <option value="Type3">Type3</option>
-        </select>
+        <!-- Opções de armas disponíveis -->
+		@Html.DropDownListFor(m => m.Type, (List<SelectListItem>)ViewBag.Types, "Selecione o Tipo", new { @class = "form-select" })
+        <!--
+            <select asp-for="Type" class="form-select" id="Tipo" aria-label="Tipo"> 
+                <option value="Type1" selected>Type1</option>
+                <option value="Type2">Type2</option>
+                <option value="Type3">Type3</option>
+                <option value="Type4">Type4</option>
+            </select>
+
+        -->
+        @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
+        
     </div>
 
     <div class="form-group">
         <label for="Preco" class="form-label">Preço (Po)</label>
         <input type="number" asp-for="Price" class="form-control" id="Preco" min="1" placeholder="20">
+		@Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <label for="Descricao" class="form-label">Descrição</label>
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
         <textarea asp-for="Description" class="form-control" id="Descricao" rows="3" placeholder="Descrição vem aqui" style="resize: none"></textarea>
     </div>
     <br />

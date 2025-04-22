@@ -1,4 +1,5 @@
-﻿@{
+﻿@model WeaponModel
+@{
     ViewData["Title"] = "Editar Arma";
 }
 
@@ -6,31 +7,41 @@
     <h1 class="display-4">@ViewData["Title"]</h1>
     <br />
 </div>
-<form class="">
+<form asp-controller="Weapon" asp-action="UpdateWeapon" method="post">
+    <input type="hidden" asp-for="Id"/>
+
     <div class="form-group">
         <label for="Nome" class="form-label">Nome</label>
-        <input type="text" class="form-control form-control-lg" id="Nome" placeholder="Faca de Arremesso" aria-label="Nome" readonly>
+        <input type="text" asp-for="Name" class="form-control form-control-lg" id="Nome" aria-label="Nome" readonly>
+        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <label for="Tipo" class="form-label">Tipo da Arma</label>
-        <select class="form-select" id="Tipo" aria-label="Tipo">
-            <!-- Opções de armas disponíveis -->
-            <option selected>Tipos</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
+        <!-- Opções de armas disponíveis -->
+        @Html.DropDownListFor(m => m.Type, (List<SelectListItem>)ViewBag.Types, "Selecione o Tipo", new { @class = "form-select" })
+        <!--
+            <select asp-for="Type" class="form-select" id="Tipo" aria-label="Tipo">
+                <option value="Type1" selected>Type1</option>
+                <option value="Type2">Type2</option>
+                <option value="Type3">Type3</option>
+                <option value="Type4">Type4</option>
+            </select>
+
+        -->
+        @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <label for="Preco" class="form-label">Preço (Po)</label>
-        <input type="number" class="form-control" id="Preco" min="1" placeholder="20">
+        <input type="number" asp-for="Price" class="form-control" id="Preco" min="1">
+        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         <label for="Descricao" class="form-label">Descrição</label>
-        <textarea class="form-control" id="Descricao" rows="3" placeholder="Descrição vem aqui" style="resize: none"></textarea>
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+        <textarea asp-for="Description" class="form-control" id="Descricao" rows="3" placeholder="Descrição vem aqui" style="resize: none"></textarea>
     </div>
     <br />
     <a asp-controller="Weapon" asp-action="Index" class="btn btn-secondary">Voltar</a>

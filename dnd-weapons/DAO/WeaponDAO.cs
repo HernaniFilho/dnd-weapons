@@ -27,14 +27,43 @@ namespace dnd_weapons.DAO
             return _context.Weapons.ToList();
         }
 
-        public WeaponModel UpdateWeapon(WeaponModel weapon)
+        public WeaponModel ReadWeaponById(int id)
         {
-            throw new NotImplementedException();
+            // Recuperar o objeto do banco de dados
+            return _context.Weapons.FirstOrDefault(w => w.Id == id);
         }
 
-        public WeaponModel DeleteWeapon(int id)
+        public WeaponModel UpdateWeapon(WeaponModel weapon)
         {
-            throw new NotImplementedException();
+            var weaponToUpdate = ReadWeaponById(weapon.Id);
+            if (weaponToUpdate == null)
+            {
+                throw new Exception("Weapon not found");
+            }
+            
+            weaponToUpdate.Type = weapon.Type;
+            weaponToUpdate.Price = weapon.Price;
+            weaponToUpdate.Description = weapon.Description;
+            // Salvar no Banco de Dados
+            _context.Weapons.Update(weaponToUpdate);
+            _context.SaveChanges();
+
+            return weaponToUpdate;
+
+        }
+
+        public bool DeleteWeaponById(int id)
+        {
+            var weaponToDelete = ReadWeaponById(id);
+            if (weaponToDelete == null)
+            {
+                throw new Exception("Unable to delete weapon");
+            }
+            // Remover do Banco de Dados
+            _context.Weapons.Remove(weaponToDelete);
+            _context.SaveChanges();
+
+            return true;
         }
     }
 }
