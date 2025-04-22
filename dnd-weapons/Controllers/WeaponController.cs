@@ -77,13 +77,22 @@ namespace dnd_weapons.Controllers
         [HttpPost]
         public IActionResult CreateWeapon(WeaponModel weapon)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _weaponDAO.CreateWeapon(weapon);
+                if (ModelState.IsValid)
+                {
+                    _weaponDAO.CreateWeapon(weapon);
+                    TempData["SuccessMessage"] = "Arma criada com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View("AddWeapon", weapon);
+            } catch(Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro ao criar arma! Erro: {ex.Message}";
+                ModelState.AddModelError("", "Erro ao criar arma: " + ex.Message);
                 return RedirectToAction("Index");
             }
-
-            return View("AddWeapon",weapon);
         }
 
         [HttpGet]
@@ -101,19 +110,45 @@ namespace dnd_weapons.Controllers
         [HttpPost]
         public IActionResult UpdateWeapon(WeaponModel weapon)
         {
-            if(ModelState.IsValid)
+            try
             {
-                _weaponDAO.UpdateWeapon(weapon);
+                if (ModelState.IsValid)
+                {
+                    _weaponDAO.UpdateWeapon(weapon);
+                    TempData["SuccessMessage"] = "Arma atualizada com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View("EditWeapon", weapon);
+            } catch(Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro ao atualizar arma! Erro: {ex.Message}";
+                ModelState.AddModelError("", "Erro ao atualizar arma: " + ex.Message);
                 return RedirectToAction("Index");
             }
-
-            return View("EditWeapon", weapon);
         }
 
         public IActionResult DeleteWeaponById(int id)
         {
-            var resultado = _weaponDAO.DeleteWeaponById(id);
-            return RedirectToAction("Index");
+            try
+            {
+                var resultado = _weaponDAO.DeleteWeaponById(id);
+                if (resultado)
+                {
+                    TempData["SuccessMessage"] = "Arma excluída com sucesso!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Erro ao excluir arma!";
+                }
+                return RedirectToAction("Index");
+            } catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Erro ao excluir arma! Erro: {ex.Message}";
+                ModelState.AddModelError("", "Erro ao excluir arma: " + ex.Message);
+                return RedirectToAction("Index");
+            }
+            
         }
     }
 }
