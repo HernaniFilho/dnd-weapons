@@ -4,45 +4,57 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">@ViewData["Title"]</h1>
+    <h1 class="display-4 dark-red-custom"><u>@ViewData["Title"]</u></h1>
     <br />
 </div>
 <form asp-controller="Weapon" asp-action="CreateWeapon" method="post">
-    <div class="form-group">
-        <label for="Nome" class="form-label">Nome</label>
-        <input type="text" asp-for="Name" class="form-control form-control-lg" id="Nome" placeholder="Faca de Arremesso" aria-label="Nome">
-        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
-    </div>
+    <div class="d-flex">
+        <div style="width: 30%">Colocar retangulo imagem</div>
+        <div style="width: 70%">
+            <div class="form-group">
+                <label for="Nome" class="form-label dark-red-custom">
+                    <h3><u><strong>Nome</strong></u></h3>
+                </label>
+                <input type="text" asp-for="Name" class="form-control form-control-lg bg-green-custom shadow text-black" id="Nome" placeholder="Faca de Arremesso" aria-label="Nome">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
 
-    <div class="form-group">
-        <label for="Tipo" class="form-label">Tipo da Arma</label>
-        <!-- Opções de armas disponíveis -->
-		@Html.DropDownListFor(m => m.Type, (List<SelectListItem>)ViewBag.Types, "Selecione o Tipo", new { @class = "form-select" })
-        <!--
-            <select asp-for="Type" class="form-select" id="Tipo" aria-label="Tipo"> 
-                <option value="Type1" selected>Type1</option>
-                <option value="Type2">Type2</option>
-                <option value="Type3">Type3</option>
-                <option value="Type4">Type4</option>
-            </select>
+            <div class="form-group">
+                <label for="Tipo" class="form-label dark-red-custom">
+                    <h3><u><strong>Tipo da Arma</strong></u></h3>
+                </label>
+                <!-- Opções de armas disponíveis -->
+                @Html.DropDownListFor(m => m.Type, (List<SelectListItem>)ViewBag.Types, "Selecione o Tipo", new { @class = "form-select bg-green-custom shadow text-black" })
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
 
-        -->
-        @Html.ValidationMessageFor(m => m.Type, "", new { @class = "text-danger" })
-        
-    </div>
+            <div class="form-group">
+                <label for="Preco" class="form-label dark-red-custom">
+                    <h3><u><strong>Preço (Po)</strong></u></h3>
+                </label>
+                <input type="number" asp-for="Price" class="form-control bg-green-custom shadow text-black" id="Preco" min="1" placeholder="20">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
 
-    <div class="form-group">
-        <label for="Preco" class="form-label">Preço (Po)</label>
-        <input type="number" asp-for="Price" class="form-control" id="Preco" min="1" placeholder="20">
-		@Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        <label for="Descricao" class="form-label">Descrição</label>
-        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
-        <textarea asp-for="Description" class="form-control" id="Descricao" rows="3" placeholder="Descrição vem aqui" style="resize: none"></textarea>
+            <div class="form-group">
+                <label for="Descricao" class="form-label dark-red-custom">
+                    <h3><strong><u>Descrição</u></strong></h3>
+                </label>
+                <span asp-validation-for="Description" class="text-danger"></span>
+                <textarea asp-for="Description" class="form-control bg-green-custom shadow text-black" id="Descricao" rows="3" placeholder="Descrição vem aqui" style="resize: none"></textarea>
+            </div>
+        </div>
     </div>
     <br />
-    <a asp-controller="Weapon" asp-action="Index" class="btn btn-secondary">Voltar</a>
-    <button type="submit" class="btn btn-primary">Adicionar</button>
+    <div class="d-flex">
+        <div style="width: 30%"></div>
+        <div style="width: 70%" class="d-flex justify-content-between">
+            <div>
+                <a asp-controller="Weapon" asp-action="Index" class="btn bg-green-custom shadow text-black">Voltar</a>
+            </div>
+            <div>
+                <button type="submit" class="btn bg-dark-red-custom shadow text-white">Adicionar</button>
+            </div>
+        </div>
+    </div>
 </form>

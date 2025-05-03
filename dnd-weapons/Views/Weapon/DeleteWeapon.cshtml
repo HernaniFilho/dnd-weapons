@@ -4,10 +4,10 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">@ViewData["Title"]</h1>
+    <h1 class="display-4 dark-red-custom"><u>@ViewData["Title"]</u></h1>
     <br />
     <h3>Deseja deletar a arma @Model.Name ?</h3>
     <br />
-    <a asp-controller="Weapon" asp-action="Index" class="btn btn-secondary">Voltar</a>
-    <a type="submit" asp-route-id="@Model.Id" asp-controller="Weapon" asp-action="DeleteWeaponById" class="btn btn-danger">Deletar</a>
+    <a asp-controller="Weapon" asp-action="Index" class="btn bg-green-custom shadow text-black">Voltar</a>
+    <a type="submit" asp-route-id="@Model.Id" asp-controller="Weapon" asp-action="DeleteWeaponById" class="btn bg-dark-red-custom shadow text-white">Deletar</a>
 </div>

@@ -20,3 +20,87 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.red-custom {
+    color: #D32430;
+}
+
+.bg-red-custom {
+    background-color: #D32430;
+}
+
+.dark-red-custom {
+    color: #58180D;
+}
+
+.bg-dark-red-custom {
+    background-color: #58180D;
+}
+
+.green-custom {
+    color: #E0E5C1;
+}
+
+.bg-green-custom {
+    background-color: #E0E5C1;
+}
+
+input.bg-green-custom:focus {
+    background-color: #E0E5C1;
+}
+
+input.bg-green-custom:read-only {
+    background-color: #E0E5C1;
+}
+
+textarea.bg-green-custom:focus {
+    background-color: #E0E5C1;
+}
+
+.dark-green-custom {
+    color: #C1C6A2;
+}
+
+.bg-dark-green-custom {
+    background-color: #C1C6A2;
+}
+
+input.bg-dark-green-custom:focus {
+    background-color: #C1C6A2;
+}
+
+input.bg-dark-green-custom:read-only {
+    background-color: #C1C6A2;
+}
+
+textarea.bg-dark-green-custom:focus {
+    background-color: #C1C6A2;
+}
+
+.white-custom {
+    color: #F5F5F5;
+}
+
+.bg-white-custom {
+    background-color: #F5F5F5;
+}
+
+.gray-custom {
+    color: #BBBCAC;
+}
+
+.bg-gray-custom {
+    background-color: #BBBCAC;
+}
+
+.font-custom {
+    font-family: 'TeXGyreBonum', sans-serif;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button:hover {
+    text-decoration: underline;
+}

@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a asp-action="AddWeapon" role="button" class="btn btn-primary">Adicionar nova arma</a>
+        <a asp-action="AddWeapon" role="button" class="btn bg-dark-red-custom text-white shadow">Adicionar nova arma</a>
     </div>
     <br />
     <!-- Ícones de Sucesso e Erro -->
@@ -43,10 +43,10 @@
 	}
     <br />
 
-    <h1 class="display-4">@ViewData["Title"] do seu personagem</h1>
+    <h1 class="display-4 dark-red-custom"><u>@ViewData["Title"] do seu personagem</u></h1>
     <br />
-    <table id="myTable" class="table display responsive nowrap" cellspacing="0" width="100%">
-        <thead>
+    <table id="myTable" class="table display responsive nowrap shadow" cellspacing="0" width="100%">
+        <thead class="bg-dark-green-custom">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nome da Arma</th>
@@ -56,7 +56,7 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white-custom">
             @if(Model != null && Model.Any())
             {
                 foreach(var weapon in Model)
@@ -68,8 +68,8 @@
                         <td>@weapon.Price</td>
                         <td>@weapon.Description</td>
                         <td>
-                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="EditWeapon" role="button" class="btn btn-primary">Editar</a>
-                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="DeleteWeapon" role="button" class="btn btn-danger">Excluir</a>
+                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="EditWeapon" role="button" class="btn bg-green-custom text-black shadow">Editar</a>
+                            <a asp-route-id="@weapon.Id" asp-controller="Weapon" asp-action="DeleteWeapon" role="button" class="btn bg-dark-red-custom text-white shadow">Excluir</a>
                         </td>
                     </tr>
                 }
